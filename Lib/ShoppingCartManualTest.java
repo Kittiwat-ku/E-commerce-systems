@@ -72,7 +72,8 @@ public class ShoppingCartManualTest {
             System.out.println("FAILED: Bulk cart total expected 81.0 but got " + total5);
             failedCount++;
         }
-        // Test 6: quantity และ priceติดลบ
+
+        // Test 6: quantity และ price ติดลบ
         ArrayList<CartItem> negativeValue = new ArrayList<>();
         negativeValue.add(new CartItem("NORMAL", "Eggs", -20.0, 1));
         negativeValue.add(new CartItem("NORMAL", "Bread", 25.0, -1));
@@ -84,6 +85,23 @@ public class ShoppingCartManualTest {
             System.out.println("FAILED: Negative value cart total expected 0.0 but got " + total6);
             failedCount++;
         }
+
+        // Test 7: item หลายประเภท with some conflict???
+        ArrayList<CartItem> multiitem = new ArrayList<>();
+        multiitem.add(new CartItem("BULK", "Milk", 15.0, 6)); // 81.0
+        multiitem.add(new CartItem("BOGO", "Eggs", 30.0, 3)); // 60.0
+        multiitem.add(new CartItem("NORMAL", "Bread", 25.0, 2)); // 50.0
+        multiitem.add(new CartItem("NORMAL", "Eggs", -20.0, 1)); // 0.0
+        multiitem.add(new CartItem("NORMAL", "Bread", 25.0, -1)); // 0.0
+        double total7 = ShoppingCartCalculator.calculateTotalPrice(multiitem);
+        if (total7 == 191.0) {
+            System.out.println("PASSED: Multiple item cart total is correct (191.0)");
+            passedCount++;
+        } else {
+            System.out.println("FAILED: Multiple item cart total expected 191.0 but got " + total7);
+            failedCount++;
+        }
+
         // --- Test Summary ---
         System.out.println("\n--------------------");
         System.out.println("--- Test Summary ---");
