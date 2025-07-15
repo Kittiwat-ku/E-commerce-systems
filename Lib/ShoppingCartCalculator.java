@@ -4,15 +4,35 @@ import java.util.ArrayList;
 public class ShoppingCartCalculator {
 
     /**
-     * เขียน Javadoc ที่นี่เพื่ออธิบายกฎการทำงานและกรณีพิเศษ:
-     * - จะทำอย่างไรถ้า items เป็น null หรือ empty?
-     * - จะทำอย่างไรถ้า CartItem มี price หรือ quantity ติดลบ?
-     * - กฎส่วนลด BOGO (ซื้อ 1 แถม 1)
-     * - กฎส่วนลด BULK (ซื้อ >= 6 ชิ้น ลด 10%)
+     * @param รายละเอียดสินค้าที่userจะซื้อ
+     * @return ราคาของในตะกร้าทั้งหมดรวมกัน(total)
+     *         - จะreturn 0.0ถ้าตะกร้าเป็นnullหรือempty
+     *         - รถ้า CartItem มี price หรือ quantity ติดลบจะไม่ถูกนับ
+     *         - ถ้าสินค้ามีBOGOเมื่อซื้อแล้วชิ้นต่อไปจะฟรี
+     *         - เมื่อซื้อแบบBULK แล้วมีจำนวนมากกว่าหรือเท่า6ชิ้น จะลด10%
      */
     public static double calculateTotalPrice(ArrayList<CartItem> items) {
-        // TODO: เขียนโค้ด Implementation ที่นี่
-        
-        return 0.0;
+        double total = 0.0;
+        //checkของตะกร้าว่าเป็น null
+        if (items == null) {
+            return total;
+        }
+        for (CartItem cartItem : items) {
+            //checkkค่าpriceและquantity ถ้าติดลบจะไม่นับ
+            if (!(cartItem.price() < 1 || cartItem.quantity() < 1)) {
+                if (cartItem.sku().equals("NORMAL")) {
+                    total += cartItem.quantity() * cartItem.price();
+                } else if (cartItem.sku().equals("BOGO")) {
+                    double bogoitem = Math.floor(cartItem.quantity() / 2) + (cartItem.quantity() % 2);
+                    total += bogoitem * cartItem.price();
+                } else if (cartItem.sku().equals("BULK")) {
+                    if (cartItem.quantity() >= 6) {
+                        double tmp = (cartItem.quantity() * cartItem.price());
+                        total = tmp - (tmp*0.1);
+                    }
+                }
+            }
+        }
+        return total;
     }
 }
