@@ -1,4 +1,5 @@
 package Lib;
+
 import java.util.ArrayList;
 
 public class ShoppingCartManualTest {
@@ -39,7 +40,7 @@ public class ShoppingCartManualTest {
         // Test 3: คำนวณปกติ ไม่มีส่วนลด
         ArrayList<CartItem> simpleCart = new ArrayList<>();
         simpleCart.add(new CartItem("NORMAL", "Bread", 25.0, 2)); // 50
-        simpleCart.add(new CartItem("NORMAL", "Milk", 15.0, 1));      // 15
+        simpleCart.add(new CartItem("NORMAL", "Milk", 15.0, 1)); // 15
         double total3 = ShoppingCartCalculator.calculateTotalPrice(simpleCart);
         if (total3 == 65.0) {
             System.out.println("PASSED: Simple cart total is correct (65.0)");
@@ -62,17 +63,27 @@ public class ShoppingCartManualTest {
         }
         // Test 5: ส่วนลดBulk
         ArrayList<CartItem> bulkCart = new ArrayList<>();
-        bulkCart.add(new CartItem("Bulk","Milk",15.0,6));
-        double total15 = ShoppingCartCalculator.calculateTotalPrice(bulkCart);
-        if (total15 == 81.0) {
+        bulkCart.add(new CartItem("BULK", "Milk", 15.0, 6));
+        double total5 = ShoppingCartCalculator.calculateTotalPrice(bulkCart);
+        if (total5 == 81.0) {
             System.out.println("PASSED: Bulk cart total is correct (81.0)");
             passedCount++;
         } else {
-            System.out.println("FAILED: Bulk cart total expected 81.0 but got " + total4);
+            System.out.println("FAILED: Bulk cart total expected 81.0 but got " + total5);
             failedCount++;
         }
-        // Test 6:
-        
+        // Test 6: quantity และ priceติดลบ
+        ArrayList<CartItem> negativeValue = new ArrayList<>();
+        negativeValue.add(new CartItem("NORMAL", "Eggs", -20.0, 1));
+        negativeValue.add(new CartItem("NORMAL", "Bread", 25.0, -1));
+        double total6 = ShoppingCartCalculator.calculateTotalPrice(negativeValue);
+        if (total6 == 0.0) {
+            System.out.println("PASSED: Negative value cart total is correct (0.0)");
+            passedCount++;
+        } else {
+            System.out.println("FAILED: Negative value cart total expected 0.0 but got " + total6);
+            failedCount++;
+        }
         // --- Test Summary ---
         System.out.println("\n--------------------");
         System.out.println("--- Test Summary ---");
