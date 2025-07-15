@@ -28,7 +28,7 @@ public class ShoppingCartCalculator {
                 } else if (cartItem.sku().equals("BULK")) {
                     if (cartItem.quantity() >= 6) {
                         double tmp = (cartItem.quantity() * cartItem.price());
-                        total = tmp - (tmp*0.1);
+                        total += tmp - (tmp*0.1);
                     }
                 }
             }
