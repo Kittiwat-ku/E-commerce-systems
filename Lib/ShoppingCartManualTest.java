@@ -99,7 +99,7 @@ public class ShoppingCartManualTest {
             System.out.println("PASSED: Multiple item cart total is correct (191.0)");
             passedCount++;
         } else {
-            System.out.println("FAILED: Multiple item cart total expected 191.0 but got " + total6);
+            System.out.println("FAILED: Multiple item cart total expected 191.0 but got " + total7);
             failedCount++;
         }
 

@@ -18,7 +18,7 @@ public class ShoppingCartCalculator {
             return total;
         }
         for (CartItem cartItem : items) {
-            //checkkค่าpriceและquantity ถ้าติดลบจะไม่นับ
+            //checkค่าpriceและquantity ถ้าติดลบจะไม่นับ
             if (!(cartItem.price() < 1 || cartItem.quantity() < 1)) {
                 if (cartItem.sku().equals("NORMAL")) {
                     total += cartItem.quantity() * cartItem.price();
