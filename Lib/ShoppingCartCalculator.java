@@ -1,15 +1,15 @@
 package Lib;
+
 import java.util.ArrayList;
 
 public class ShoppingCartCalculator {
-
     /**
      * @param รายละเอียดสินค้าที่userจะซื้อ
      * @return ราคาของในตะกร้าทั้งหมดรวมกัน(total)
-     *         - จะreturn 0.0ถ้าตะกร้าเป็นnullหรือempty
-     *         - รถ้า CartItem มี price หรือ quantity ติดลบจะไม่ถูกนับ
+     *         - จะreturn0.0ถ้าตะกร้าเป็นnullหรือempty
+     *         - ถ้า CartItem มี price หรือ quantity ติดลบจะไม่ถูกนับ
      *         - ถ้าสินค้ามีBOGOเมื่อซื้อแล้วชิ้นต่อไปจะฟรี
-     *         - เมื่อซื้อแบบBULK แล้วมีจำนวนมากกว่าหรือเท่า6ชิ้น จะลด10%
+     *         - เมื่อซื้อแบบBULK แล้วมีจำนวนมากกว่าหรือเท่ากับ6ชิ้น จะลด10%
      */
     public static double calculateTotalPrice(ArrayList<CartItem> items) {
         double total = 0.0;

@@ -61,7 +61,6 @@ public class ShoppingCartManualTest {
             System.out.println("FAILED: BOGO cart total expected 60.0 but got " + total4);
             failedCount++;
         }
-
         // Test 5: ส่วนลดBulk
         ArrayList<CartItem> bulkCart = new ArrayList<>();
         bulkCart.add(new CartItem("BULK", "Milk", 15.0, 6));
