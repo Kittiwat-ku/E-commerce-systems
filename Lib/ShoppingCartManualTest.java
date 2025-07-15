@@ -49,6 +49,30 @@ public class ShoppingCartManualTest {
             failedCount++;
         }
 
+        // Test 4: ส่วนลด BOGO
+        ArrayList<CartItem> bogoCart = new ArrayList<>();
+        bogoCart.add(new CartItem("BOGO", "Eggs", 30.0, 3)); // 60, buy 1 get 1 free
+        double total4 = ShoppingCartCalculator.calculateTotalPrice(bogoCart);
+        if (total4 == 60.0) {
+            System.out.println("PASSED: BOGO cart total is correct (60.0)");
+            passedCount++;
+        } else {
+            System.out.println("FAILED: BOGO cart total expected 60.0 but got " + total4);
+            failedCount++;
+        }
+        // Test 5: ส่วนลดBulk
+        ArrayList<CartItem> bulkCart = new ArrayList<>();
+        bulkCart.add(new CartItem("Bulk","Milk",15.0,6));
+        double total15 = ShoppingCartCalculator.calculateTotalPrice(bulkCart);
+        if (total15 == 81.0) {
+            System.out.println("PASSED: Bulk cart total is correct (81.0)");
+            passedCount++;
+        } else {
+            System.out.println("FAILED: Bulk cart total expected 81.0 but got " + total4);
+            failedCount++;
+        }
+        // Test 6:
+        
         // --- Test Summary ---
         System.out.println("\n--------------------");
         System.out.println("--- Test Summary ---");
