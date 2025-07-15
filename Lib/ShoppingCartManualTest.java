@@ -96,10 +96,10 @@ public class ShoppingCartManualTest {
         multiitem.add(new CartItem("NORMAL", "Bread", 25.0, -1)); // 0.0
         double total7 = ShoppingCartCalculator.calculateTotalPrice(multiitem);
         if (total7 == 191.0) {
-            System.out.println("PASSED: Multiple item cart total is correct (0.0)");
+            System.out.println("PASSED: Multiple item cart total is correct (191.0)");
             passedCount++;
         } else {
-            System.out.println("FAILED: Multiple item cart total expected 0.0 but got " + total6);
+            System.out.println("FAILED: Multiple item cart total expected 191.0 but got " + total6);
             failedCount++;
         }
 
